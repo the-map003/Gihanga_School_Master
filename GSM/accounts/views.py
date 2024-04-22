@@ -1,12 +1,11 @@
 from django.shortcuts import render
-
-def login(request): 
-    return render(request, 'accounts/login.html')
-
 from django.shortcuts import redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import views as auth_views
 from .models import Users
+
+def login(request): 
+    return render(request, 'accounts/login.html')
 
 @login_required
 def redirect_users(request):

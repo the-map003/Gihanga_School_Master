@@ -1,3 +1,4 @@
 from django.shortcuts import render
 
-# Create your views here.
+def stock_dash(request):
+    return render(request,"stock_management/stock_dash.html")
