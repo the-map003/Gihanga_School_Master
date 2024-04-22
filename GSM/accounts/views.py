@@ -15,8 +15,8 @@ def login(request):
         else:
             # Handle invalid login (e.g., display an error message)
             return render(request, 'accounts/login.html', {'error_message': 'Invalid username or password'})
-    else:
-        return render(request, 'accounts/login.html')
+   
+    return render(request, 'accounts/login.html')
 
 @login_required
 def redirect_users(request):
