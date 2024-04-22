@@ -1,6 +1,8 @@
 from django.contrib import admin
 from django.urls import path,include
 urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('',include('accounts.urls')),
     path('announcements/',include('announcements_messaging.urls')),
     path('attendance/',include('attendance_management.urls')),
     path('fee/',include('fees_management.urls')),
