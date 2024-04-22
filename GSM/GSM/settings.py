@@ -37,7 +37,19 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'stock_management',  # Register the stock management app
+    'library_management',  # Register the library management app
+    'student_management',  # Register the student management app
+    'attendance_management',  # Register the attendance management app
+    'fees_management',  # Register the fees management app
+    'timetable_management',  # Register the timetable management app
+    'result_report_management',  # Register the result report management app
+    'announcements_messaging',  # Register the announcements and messaging app
+    'student_playground',  # Register the student playground app
+    'hardware_control_panel',  # Register the hardware control panel app
+    'accounts',  # Register the user authentication and authorization app
 ]
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
