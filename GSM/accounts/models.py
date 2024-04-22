@@ -4,7 +4,7 @@ from django.db import models
 class Users(AbstractUser):
     MASTER = 1
     DEAN_OF_STUDY = 2
-    ACCOUNTANT = 3
+    STORE_KEEPER = 3
     LIBRARIAN = 4
     HARDWARE_MANAGER = 5
     TEACHER = 6
@@ -13,7 +13,7 @@ class Users(AbstractUser):
     ROLE_CHOICES = [
         (MASTER, 'Master'),
         (DEAN_OF_STUDY, 'Dean of Study'),
-        (ACCOUNTANT, 'Accountant'),
+        (STORE_KEEPER, 'Store keeper'),
         (LIBRARIAN, 'Librarian'),
         (HARDWARE_MANAGER, 'Hardware Manager'),
         (TEACHER, 'Teacher'),
