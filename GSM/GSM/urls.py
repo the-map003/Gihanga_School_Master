@@ -1,5 +1,6 @@
 from django.contrib import admin
 from django.urls import path,include
+app_name = 'stock_management'  # Define the app namespace
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',include('accounts.urls')),
