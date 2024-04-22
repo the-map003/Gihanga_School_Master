@@ -6,6 +6,7 @@ def login(request):
 from django.shortcuts import redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import views as auth_views
+from .models import Users
 
 @login_required
 def redirect_users(request):
