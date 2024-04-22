@@ -1,6 +1,4 @@
 from django.shortcuts import render
 
-# Create your views here.
-def login(request):
-
-    return render('accounts/login.html')
+def login(request): 
+    return render(request, 'accounts/login.html')
