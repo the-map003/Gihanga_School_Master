@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login as auth_login
 from django.contrib.auth.decorators import login_required
 from .models import Users
+from django.contrib.auth. import 
 
 def login_user(request): 
     if request.method == 'POST':
@@ -13,7 +14,8 @@ def login_user(request):
             return redirect('redirect_users')
         else:
             # Handle invalid login (e.g., display an error message)
-            return render(request, 'accounts/login.html', {'error_message': 'Invalid username or password'})
+            
+            return render(request, 'accounts/login.html')
    
     return render(request, 'accounts/login.html')
 
