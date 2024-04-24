@@ -4,7 +4,7 @@
 <div class="col-lg-12 grid-margin stretch-card">
     <div class="card">
       <div class="card-body">
-        <h3 class="card-title">Manage Suppliers</h3>
+        <h3 class="card-title">Report of Suppliers</h3>
         </p>
         <div class="table-responsive">
           <table class="table table-bordered">
@@ -14,7 +14,7 @@
                 <th> Supplier Name </th>
                 <th> Phone Number </th>
                 <th> Email </th>
-                <th> Action </th>
+                <th> Date Added </th>
               </tr>
             </thead>
             <tbody>
@@ -24,12 +24,7 @@
                         <td>{{ supplier.name }}</td>
                         <td>{{ supplier.contact1 }}</td>
                         <td>{{ supplier.address }}</td>
-                        <td colspan="2">
-                          <a href="{% url 'update_supplier' supplier.id %}"><button type="submit" class="btn btn-primary mr-2">Update</button></a>
-                          <a href="{% url 'delete_supplier' supplier.id %}"><button class="btn btn-danger">Delete</button></a>
-                          
-                          
-                        </td>
+                        <td>{{ supplier.created }}</td>
                       </tr>
                   {% endfor %}
               </tbody>
