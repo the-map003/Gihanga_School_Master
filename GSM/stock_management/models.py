@@ -7,19 +7,12 @@ class Supplier(models.Model):
     name=models.CharField(max_length=255)
     address=models.CharField(max_length=255)
     contact1=models.CharField(max_length=255)
-<<<<<<< HEAD
-    contact2=models.CharField(max_length=255)
+    contact2=models.CharField(max_length=255,null=True)
     created=models.DateTimeField(auto_now_add=True)
     email=models.EmailField(null=True)
     status=models.BooleanField(default=True)
     class Meta:
         ordering=['-created']
-=======
-    created=models.DateTimeField(auto_now_add=True)
-    status=models.BooleanField(default=True)
-    class Meta:
-        ordering=['created']
->>>>>>> 1c2a8bbe117ff3e572cf253c0116ad0035440f79
 
     def __str__(self):
         return self.name
@@ -38,10 +31,7 @@ class Item(models.Model):
     description=models.TextField(blank=True,null=True)
     price=models.FloatField()
     image=models.ImageField(upload_to='item_images', blank=True,null=True)
-<<<<<<< HEAD
   
-=======
->>>>>>> 1c2a8bbe117ff3e572cf253c0116ad0035440f79
     created_by=models.ForeignKey(Users,related_name='items',on_delete=models.CASCADE)
 
     created_at=models.DateTimeField(auto_now_add=True)

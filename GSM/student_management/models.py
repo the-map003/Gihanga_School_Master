@@ -27,6 +27,8 @@ class Student(models.Model):
  
     registered_by=models.ForeignKey(Users,related_name='student_reg',on_delete=models.CASCADE,null=True)
     updated=models.DateTimeField(auto_now=True)
+    def __str__(self) -> str:
+        return self.user.first_name
 
 
 class Teacher(models.Model):
@@ -47,6 +49,8 @@ class Teacher(models.Model):
   
     registered_by=models.ForeignKey(Users,related_name='teacher_reg',on_delete=models.CASCADE,null=True)
     updated=models.DateTimeField(auto_now=True)
+    def __str__(self) -> str:
+        return self.user.first_name
 
 
 
