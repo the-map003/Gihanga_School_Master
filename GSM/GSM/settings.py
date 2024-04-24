@@ -142,3 +142,8 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'profile_pictures')
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # settings.py
 AUTH_USER_MODEL = 'accounts.Users'
+
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+]
+
