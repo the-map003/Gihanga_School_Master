@@ -112,9 +112,18 @@ def create_user(request):
 
 
 def master_dash(request):
+
     return render(request,'accounts/master_dash.html')
 
+from django.shortcuts import render
+from .models import Users  # Assuming your Users model is in the same app
+
 def manage_user(request):
-    return render(request,'accounts/manage_users.html')
+    users = Users.objects.all()
+    for user in users:
+        user.role_label = user.get_role_label()  # Assign role label to each user
+    context = {'users': users}
+    return render(request, 'accounts/manage_users.html', context)
+
 def report_user(request):
     return
