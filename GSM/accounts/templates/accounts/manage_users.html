@@ -6,7 +6,11 @@
         <div class="card">
             <div class="card-body">
                 <h4 class="card-title">System users</h4>
+<<<<<<< HEAD
                 <p class="card-description"> Manage <code>System users</code></p>
+=======
+                <p class="card-description"> Add class <code>.table-striped</code></p>
+>>>>>>> c711af74d7e3bc5f4aa7d7f1a0eaca53791aeca8
                 <div class="table-responsive">
                     <table class="table table-striped">
                         <thead>
@@ -15,11 +19,16 @@
                                 <th> First name </th>
                                 <th> Last name </th>
                                 <th> Username </th>
+<<<<<<< HEAD
                                 <th>Email</th>
                                 <th>Date joined</th>
                                 <th> Is staff</th>
                                 <th> Role</th>
                                 
+=======
+                                <th> Role</th>
+                                <th> Status </th>
+>>>>>>> c711af74d7e3bc5f4aa7d7f1a0eaca53791aeca8
                                
                             </tr>
                         </thead>
@@ -27,14 +36,19 @@
                             {% for user in users %}
                                 <tr>
                                     <td class="py-1">
+<<<<<<< HEAD
                                         {% if user.profile_picture %}
                                           <img src="{{user.profile_picture.url}}" alt="image" />
                                     
                                         {% endif %}
+=======
+                                        <img src="{{user.profile_picture.url}}" alt="image" />
+>>>>>>> c711af74d7e3bc5f4aa7d7f1a0eaca53791aeca8
                                     </td>
                                     <td>{{ user.first_name }}</td>
                                     <td>{{ user.last_name }}</td>
                                     <td>{{ user.username }}</td>
+<<<<<<< HEAD
                                     <td>{{ user.email }}</td>
                                     <td>{{ user.date_joined }}</td>  <!-- Display date joined -->
                                     <td>{{ user.is_staff }}</td>      <!-- Display is staff status -->
@@ -42,6 +56,14 @@
                                     <td>{{ user.role_label }}</td>
                                   
                                     <td>{{ user.status }}</td>
+=======
+                                    <td>
+                                        <div class="progress">
+                                           <td>{{ user.status }}</td>
+                                        </div>
+                                    </td>
+                                    <td>{{ user.amount }}</td>
+>>>>>>> c711af74d7e3bc5f4aa7d7f1a0eaca53791aeca8
                                     <td>{{ user.deadline }}</td>
                                 </tr>
                             {% endfor %}
