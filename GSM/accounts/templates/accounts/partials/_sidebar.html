@@ -9,13 +9,21 @@
       <div class="profile-desc">
         <div class="profile-pic">
           <div class="count-indicator">
-            <img class="img-xs rounded-circle " src="assets/images/faces/face15.jpg" alt="">
+          {% if request.user.profile_picture %}
+          <img class="img-xs rounded-circle " src="{{request.user.profile_picture.url}}" alt="">
+          {% else %}
+          {% endif %}
+            
             <span class="count bg-success"></span>
           </div>
           <div class="profile-name">
-            <h5 class="mb-0 font-weight-normal">Henry Klein</h5>
-            <span>Gold Member</span>
-          </div>
+            <h5 class="mb-0 font-weight-normal">{{ request.user.username }}</h5>
+            {% for role_value, role_label in request.user.ROLE_CHOICES %}
+                {% if request.user.role == role_value %}
+                    <span>{{ role_label }}</span>
+                {% endif %}
+            {% endfor %}
+        </div>
         </div>
         <a href="#" id="profile-dropdown" data-toggle="dropdown"><i class="mdi mdi-dots-vertical"></i></a>
         <div class="dropdown-menu dropdown-menu-right sidebar-dropdown preview-list" aria-labelledby="profile-dropdown">
