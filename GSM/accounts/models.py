@@ -44,3 +44,8 @@ class Users(AbstractUser):
         help_text='Specific permissions for this user.',
         related_name='custom_users'  # Specify custom related_name
     )
+    def get_role_label(self):
+        for role_value, role_label in self.ROLE_CHOICES:
+            if role_value == self.role:
+                return role_label
+        return "Unknown"    
