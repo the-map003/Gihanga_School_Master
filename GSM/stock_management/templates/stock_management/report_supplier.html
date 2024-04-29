@@ -1,6 +1,21 @@
 {% extends "stock_management/stock_base.html" %}
 {% load static %}
 {% block content %}
+<div class="col-12 grid-margin stretch-card">
+  <div class="card">
+    <div class="card-body">
+      <h4 class="card-title">Select Date</h4>
+      <form class="form-inline" method="post">
+          {% csrf_token %}
+        <input type="date" class="form-control mb-2 mr-sm-2" id="inlineFormInputName2" placeholder="Start Date" name="start_date">
+        <div class="input-group mb-2 mr-sm-2">
+          <input type="date" class="form-control" id="inlineFormInputGroupUsername2" placeholder="End Date" name="end_date">
+        </div>
+        <button type="submit" class="btn btn-primary mb-2">Check</button>
+      </form>
+    </div>
+</div>
+</div>
 <div class="col-lg-12 grid-margin stretch-card">
     <div class="card">
       <div class="card-body">

@@ -7,12 +7,10 @@ class Supplier(models.Model):
     name=models.CharField(max_length=255)
     address=models.CharField(max_length=255)
     contact1=models.CharField(max_length=255)
-    contact2=models.CharField(max_length=255,null=True)
     created=models.DateTimeField(auto_now_add=True)
-    email=models.EmailField(null=True)
     status=models.BooleanField(default=True)
     class Meta:
-        ordering=['-created']
+        ordering=['created']
 
     def __str__(self):
         return self.name
@@ -30,27 +28,27 @@ class Item(models.Model):
     name=models.CharField(max_length=250)
     description=models.TextField(blank=True,null=True)
     price=models.FloatField()
-    image=models.ImageField(upload_to='item_images', blank=True,null=True)
   
     created_by=models.ForeignKey(Users,related_name='items',on_delete=models.CASCADE)
 
     created_at=models.DateTimeField(auto_now_add=True)
     class Meta:
-        ordering=['-created_at']
+        ordering=['created_at']
     def __str__(self):
         return self.name
     
 class PurchaseOrder(models.Model):
-    suppliyer=models.ForeignKey(Supplier,related_name='purchase',on_delete=models.CASCADE)
+    supplier=models.ForeignKey(Supplier,related_name='purchase',on_delete=models.CASCADE)
     item=models.ForeignKey(Item,related_name='purchase',on_delete=models.CASCADE)
     quantity=models.IntegerField()
     unit=models.FloatField()
+    total=models.FloatField()
     creator=models.ForeignKey(Users,related_name='purchase',on_delete=models.CASCADE)
     ordered_at=models.DateTimeField(auto_now_add=True)
     status=models.BooleanField(default=False)
     updated_at=models.DateTimeField(auto_now=True)
     class Meta:
-        ordering=['-ordered_at']
+        ordering=['ordered_at']
     def __str__(self) :
         return self.item.name
 

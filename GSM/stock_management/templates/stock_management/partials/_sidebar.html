@@ -95,9 +95,9 @@
       </a>
       <div class="collapse" id="ui-basic1">
         <ul class="nav flex-column sub-menu">
-          <li class="nav-item"> <a class="nav-link" href="{% url 'add_supplier' %}">Add Item</a></li>
-          <li class="nav-item"> <a class="nav-link" href="{% url 'manage_supplier' %}">Manage Items</a></li>
-          <li class="nav-item"> <a class="nav-link" href="{% url 'report_supplier' %}">Report</a></li>
+          <li class="nav-item"> <a class="nav-link" href="{% url 'add_item' %}">Add Item</a></li>
+          <li class="nav-item"> <a class="nav-link" href="{% url 'manage_item' %}">Manage Items</a></li>
+          <li class="nav-item"> <a class="nav-link" href="{% url 'report_item' %}">Report</a></li>
         </ul>
       </div>
     </li>
@@ -113,7 +113,7 @@
         <ul class="nav flex-column sub-menu">
           <li class="nav-item"> <a class="nav-link" href="{% url 'make_order' %}">Make Order</a></li>
           <li class="nav-item"> <a class="nav-link" href="{% url 'manage_order' %}">Manage Order</a></li>
-          <li class="nav-item"> <a class="nav-link" href="#">Report</a></li>
+          <li class="nav-item"> <a class="nav-link" href="{% url 'report_order' %}">Report</a></li>
         </ul>
       </div>
     </li>
