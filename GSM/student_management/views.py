@@ -150,24 +150,7 @@ def DosAddStudent(request):
     
     return render(request,'student_management/dos/add_student.html',{'classes':classes})
 
-# def Teachers(request):
-    
-#     return render(request,'student_management/dos/dos_dash.html')
 
-# def StudentAbout(request):
-#     return render(request,'sdata/about.html')
-# def StudentContact(request):
-#     return render(request,'sdata/contact.html')
-# def StudentAdminLogin(request):
-#     if request.user.is_authenticated:
-#         return redirect('stddashboard')
-#     if request.method=='POST':
-#         username=request.POST.get('username')
-#         password=request.POST.get('password')
-        
-#         user=User.objects.get(username=username)
-        
-            
 #         user=authenticate(request,username=username,password=password)
 #         if user is not None:
 #             login(request,user)
