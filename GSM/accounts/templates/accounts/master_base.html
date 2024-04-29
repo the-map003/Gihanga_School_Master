@@ -6,7 +6,6 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Gihanga School Master</title>
-    <!-- plugins:css -->
     <link rel="stylesheet" href="{% static 'assets/vendors/mdi/css/materialdesignicons.min.css' %} ">
     <link rel="stylesheet" href="{% static 'assets/vendors/css/vendor.bundle.base.css' %} ">
     <!-- endinject -->
@@ -202,13 +201,14 @@
                     </div>
                   </a>
                   <div class="dropdown-divider"></div>
-                  <a class="dropdown-item preview-item">
+                  <a href="{% url 'custom_logout' %}" class="dropdown-item preview-item">
                     <div class="preview-thumbnail">
                       <div class="preview-icon bg-dark rounded-circle">
                         <i class="mdi mdi-logout text-danger"></i>
                       </div>
                     </div>
                     <div class="preview-item-content">
+                    
                       <p class="preview-subject mb-1">Log out</p>
                     </div>
                   </a>

@@ -2,8 +2,13 @@ from django.urls import path
 from .import views
 urlpatterns=[
     path('',views.StudentDashboard,name='student_dashboard'),
-    path('admin/',views.StudentAdmin,name='student_admin'),
-    # path('contact/',views.StudentContact,name='stdcontact'),
+    path('dos/',views.Dos,name='dos'),
+    path('teacher/',views.Teachers,name='dos'),
+    path('dos/add_student/',views.DosAddStudent,name='dos_add_student'),
+    path('dos/manage_student/',views.DosManageStudent,name='dos_manage_student'),
+    
+
+    path('dos/add_course',views.add_course,name='add_course'),
     # path('admin/',views.StudentAdminLogin,name='stdlogin'),
     # path('admin/dashboard/',views.Dashboard,name='stddashboard'),
     # path('admin/dashboard/addclass/',views.Addclass,name='addclass'),
