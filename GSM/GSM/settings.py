@@ -60,6 +60,10 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+   
+    'accounts.middleware.NoCacheMiddleware',
+
+
 ]
 
 ROOT_URLCONF = 'GSM.urls'
@@ -142,6 +146,8 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'profile_pictures')
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # settings.py
 AUTH_USER_MODEL = 'accounts.Users'
+LOGIN_URL = 'login'
+
 
 AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
