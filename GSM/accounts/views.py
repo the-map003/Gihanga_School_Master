@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth import authenticate, login as auth_login
+from django.contrib.auth import authenticate, login as auth_login,logout
 from django.contrib.auth.decorators import login_required
 from .models import Users
 from django.contrib.auth import get_user_model
@@ -8,21 +8,31 @@ from django.contrib import messages
 from student_management.models import Student,Teacher
 import os
 from django.conf import settings
-def login_user(request): 
+from django.contrib.auth import authenticate, login as auth_login, logout
+from django.shortcuts import render, redirect
+
+def login_user(request):
     if request.method == 'POST':
         username = request.POST.get('username')
         password = request.POST.get('password')
         user = authenticate(request, username=username, password=password)
         if user is not None:
-            auth_login(request, user)  # Use auth_login instead of login
-            print('user found')
+            auth_login(request, user)
+            print('User found')
             return redirect('redirect_users')
         else:
             # Handle invalid login (e.g., display an error message)
-            print('user not found')
+            print('User not found')
             return render(request, 'accounts/login.html', {'error_message': 'Invalid username or password'})
-   
-    return render(request, 'accounts/login.html')
+    else:
+        # If the request method is not POST (i.e., GET), render the custom login form
+        return render(request, 'accounts/login.html')
+
+
+def user_logout(request):
+    logout(request)  # Logout the user
+    return redirect('login')  # Redirect to the login page or any other desired page
+
 
 @login_required
 def redirect_users(request):
@@ -30,7 +40,7 @@ def redirect_users(request):
     if user.role == Users.STORE_KEEPER:
         return redirect('stock_dash') 
     elif user.role == Users.DEAN_OF_STUDY:
-        return redirect('student_admin') 
+        return redirect('dos') 
     elif user.role == Users.MASTER:
         return redirect('master')
     else:
@@ -39,8 +49,6 @@ def redirect_users(request):
 
 
 @login_required
-
-
 def create_user(request):
     user_role_choices = Users.ROLE_CHOICES
     
@@ -111,13 +119,12 @@ def create_user(request):
     return render(request, 'accounts/register.html', {'user_role_choices': user_role_choices})
 
 
+@login_required
 def master_dash(request):
 
     return render(request,'accounts/master_dash.html')
 
-from django.shortcuts import render
-from .models import Users  # Assuming your Users model is in the same app
-
+@login_required
 def manage_user(request):
     users = Users.objects.all()
     for user in users:
@@ -125,5 +132,6 @@ def manage_user(request):
     context = {'users': users}
     return render(request, 'accounts/manage_users.html', context)
 
+@login_required
 def report_user(request):
     return

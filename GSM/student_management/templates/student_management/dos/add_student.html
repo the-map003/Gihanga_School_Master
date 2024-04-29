@@ -1,0 +1,99 @@
+{% extends "student_management/dos/dos_base.html" %}
+{% load static %}
+{% block content %}              
+              
+              <div class="col-12 grid-margin stretch-card">
+                <div class="card">
+                  <div class="card-body">
+                    <h4 class="card-title">Add Student</h4>
+                    <p class="card-description"> Fill The form To Add student</p>
+                    <form class="forms-sample" method="post">
+                     {% csrf_token %}
+                      <div class="form-group">
+                        <label for="exampleInputName1">First Name</label>
+                        <input type="text" class="form-control" name="fname" id="exampleInputName1" placeholder="First Name">
+                      </div>
+
+                      <div class="form-group">
+                        <label for="exampleInputName1">Last Name</label>
+                        <input type="text" class="form-control" name="lname" id="exampleInputName1" placeholder="Last Name">
+                      </div>
+
+
+                      <div class="form-group">
+                        <label for="exampleInputEmail3">Email address</label>
+                        <input type="email" name="email" class="form-control" id="exampleInputEmail3" placeholder="Email">
+                      </div>
+                      <div class="form-group">
+                        <label for="exampleInputName1">Username</label>
+                        <input type="text" class="form-control" name="username" id="exampleInputName1" placeholder="Username">
+                      </div>
+                      <div class="form-group">
+                        <label for="exampleInputPassword4">Password</label>
+                        <input type="password" name="password" class="form-control" id="exampleInputPassword4" placeholder="Password">
+                      </div>
+                      <div class="form-group">
+                        <label for="exampleInputPassword4">Confirm Password</label>
+                        <input type="password" name="password1" class="form-control" id="exampleInputPassword4" placeholder="Confirm Password">
+                      </div>
+                      <div class="form-group">
+                        <label for="exampleSelectGender">Gender</label>
+                        <select class="form-control" name="gender" id="exampleSelectGender">
+                        <option desabled>__select__</option>
+                          <option value="male">Male</option>
+                          <option value="female">Female</option>
+                        </select>
+                      </div>
+                        <div class="form-group">
+                        <label for="exampleSelectGender">Student Class</label>
+                        <select class="form-control" name="student_class" id="exampleSelectGender" required>
+                        <option>__select__</option>
+                        {% for class in classes  %}
+                        <option value="{{class.id}}">{{class.name}}</option>
+                        
+                        {% endfor %}
+                          
+                        </select>
+     
+
+                      </div>
+                      <div class="form-group">
+                        <label>Image upload</label>
+                        <input type="file" name="img" class="file-upload-default">
+                        <div class="input-group col-xs-12">
+                          <input type="text" class="form-control file-upload-info" disabled placeholder="Upload Image">
+                          <span class="input-group-append">
+                            <button class="file-upload-browse btn btn-primary" type="button">Upload</button>
+                          </span>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label for="exampleInputCity1">City</label>
+                        <input type="text" name="city" class="form-control" id="exampleInputCity1" placeholder="Location">
+                      </div>
+                      <div class="form-group">
+                        <label for="exampleInputCity1">Father Name</label>
+                        <input type="text" name="father" class="form-control" id="exampleInputCity1" placeholder="Father Full Name">
+                      </div>
+                      <div class="form-group">
+                        <label for="exampleInputCity1">Mother Name</label>
+                        <input type="text" name="mother" class="form-control" id="exampleInputCity1" placeholder="Mother Full Name">
+                      </div>
+                      <div class="form-group">
+                        <label for="exampleInputCity1">Parent Phone</label>
+                        <input type="text" name="p_phone" class="form-control" id="exampleInputCity1" placeholder="+250...">
+                      </div>
+                      <div class="form-group">
+                        <label for="exampleInputCity1">Student Phone</label>
+                        <input type="text" name="s_phone" class="form-control" id="exampleInputCity1" placeholder="+250...">
+                      </div>
+                    
+                      <button type="submit" class="btn btn-primary mr-2">Register</button>
+                      <button type="reset" class="btn btn-dark">Cancel</button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+
+
+{% endblock %}
