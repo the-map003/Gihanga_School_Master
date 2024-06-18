@@ -1,0 +1,19 @@
+{% extends "library_management/dashboard/library_base.html" %}
+{% load static %}
+{% block content %}
+<div class="col-12 grid-margin stretch-card">
+    <div class="card">
+      <div class="card-body">
+        <h3 class="card-title">Update Author</h3>
+        <form class="forms-sample" method="post" >
+          {% csrf_token %}
+          <div class="form-group">
+            <label for="exampleInputName1">Name</label>
+            <input type="text" class="form-control" id="exampleInputName1" name="name" placeholder="Name" required value="{{author.name}}">
+          </div>
+          <button type="submit" class="btn btn-primary mr-2">Update</button>
+        </form>
+      </div>
+    </div>
+  </div>
+{% endblock content %}

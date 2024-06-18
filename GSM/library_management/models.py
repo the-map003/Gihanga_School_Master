@@ -1,9 +1,9 @@
 from django.db import models
+from accounts.models import Users
 
 class Author(models.Model):
     name = models.CharField(max_length=100)
-    def __str__(self) -> str:
-        return self.name
+    created = models.DateTimeField(auto_now_add=True) 
 
 class Category(models.Model):
     name = models.CharField(max_length=100)
