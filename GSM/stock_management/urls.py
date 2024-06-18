@@ -3,10 +3,12 @@ from . import views
 from django.urls import path,include
 from django.conf import settings
 from django.conf.urls.static import static
+from .views import custom_logout_view
 
 urlpatterns = [
     path('',views.stock_dash, name="stock_dash"),
     path('add_supplier',views.add_supplier,name='add_supplier'),
+    path('logout/', custom_logout_view, name='logout'),
     path('insert_supplier',views.insert_supplier,name='insert_supplier'),
     path('manage_supplier', views.manage_supplier, name="manage_supplier"),
     path('update_supplier/<int:supplier_id>/',views.update_supplier, name="update_supplier"),

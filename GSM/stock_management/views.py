@@ -3,16 +3,31 @@ from . models import Supplier, Category, Item, PurchaseOrder, Stock_In, Stock_Ou
 from django.contrib import messages
 from accounts.models import Users
 from datetime import datetime
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth import logout
 from django.utils.dateparse import parse_date
 from django.core.exceptions import ObjectDoesNotExist
 from django.utils import timezone
+from django.urls import reverse_lazy
+from django.contrib.auth import logout as django_logout
+from django.views.decorators.http import require_http_methods
+from django.views.decorators.csrf import csrf_exempt
 
+@login_required
 def stock_dash(request):
     return render(request,"stock_management/dash.html")
 
+@csrf_exempt
+@require_http_methods(["GET", "POST"])
+def custom_logout_view(request):
+    django_logout(request)
+    return redirect(reverse_lazy('login'))  # Adjust 'login' to the correct URL name
+
+@login_required
 def add_supplier(request):
     return render(request,'stock_management/form_supplier.html')
 
+@login_required
 def insert_supplier(request):
     if request.method == 'POST':
         name = request.POST.get('name')
@@ -44,10 +59,12 @@ def insert_supplier(request):
         return render(request,'stock_management/form_supplier.html')
 
 
+@login_required
 def manage_supplier(request):
     suppliers = Supplier.objects.all()
     return render(request, 'stock_management/manage_supplier.html', {'suppliers': suppliers})
 
+@login_required
 def update_supplier(request, supplier_id):
     if request.method == 'POST':
         supplier = Supplier.objects.get(pk=supplier_id)
@@ -59,11 +76,14 @@ def update_supplier(request, supplier_id):
     else:
         supplier = Supplier.objects.get(pk=supplier_id)
         return render(request, 'stock_management/update_supplier.html', {'supplier': supplier})
+
+@login_required
 def delete_supplier(request, supplier_id):
     supplier = Supplier.objects.get(pk=supplier_id)
     supplier.delete()
     return redirect('manage_supplier')
 
+@login_required
 def report_supplier(request):
     if request.method == 'POST':
         # Parse start and end dates from the form submission
@@ -83,7 +103,8 @@ def report_supplier(request):
     else:
         # If it's a GET request or if no dates are provided, display an empty form
         return render(request, 'stock_management/report_supplier.html', {})
-    
+
+@login_required  
 def add_item(request):
     categories = Category.objects.all()
 
@@ -115,10 +136,12 @@ def add_item(request):
     context = {'categories': categories}
     return render(request, 'stock_management/form_item.html', context)
 
+@login_required
 def manage_item(request):
     item = Item.objects.all()
     return render(request, 'stock_management/manage_item.html', {'items': item})
 
+@login_required
 def update_item(request, item_id, category_id):
     if request.method == 'POST':
         item = Item.objects.get(pk=item_id)
@@ -134,11 +157,14 @@ def update_item(request, item_id, category_id):
         item = Item.objects.get(pk=item_id)
         category = Category.objects.get(pk=category_id)
         return render(request, 'stock_management/update_item.html',{'item':item})
+
+@login_required
 def delete_item(request, item_id):
     item = Item.objects.get(pk=item_id)
     item.delete()
     return redirect('manage_item')
 
+@login_required
 def report_item(request):
     if request.method == 'POST':
         # Parse start and end dates from the form submission
@@ -158,7 +184,8 @@ def report_item(request):
     else:
         # If it's a GET request or if no dates are provided, display an empty form
         return render(request, 'stock_management/report_item.html', {})
-    
+   
+@login_required 
 def make_order(request):
     item_var = Item.objects.all()
     supplier_var = Supplier.objects.all()
@@ -203,10 +230,12 @@ def make_order(request):
     }
     return render(request, 'stock_management/form_order.html', context)
 
+@login_required
 def manage_order(request):
     purchaseorder = PurchaseOrder.objects.all()
     return render(request, 'stock_management/manage_order.html', {'purchaseorders':purchaseorder})
 
+@login_required
 def update_order(request, purchaseorder_id, item_id, supplier_id):
     # Retrieve the purchaseorder regardless of the request method
     purchaseorder = PurchaseOrder.objects.get(pk=purchaseorder_id)
@@ -236,12 +265,14 @@ def update_order(request, purchaseorder_id, item_id, supplier_id):
     else:
         return render(request, 'stock_management/update_order.html', {'purchaseorder': purchaseorder})
 
+@login_required
 def delete_order(request, purchaseorder_id):
     purchaseorder = PurchaseOrder.objects.get(pk=purchaseorder_id)
     purchaseorder.delete()
     return redirect('manage_order')
 
 
+@login_required
 def receive_order(request, order_id):
     try:
         order = PurchaseOrder.objects.get(id=order_id)
@@ -267,6 +298,7 @@ def receive_order(request, order_id):
     messages.success(request, "Order received successfully and added to stock.")
     return redirect('manage_order')
 
+@login_required
 def report_order(request):
     if request.method == 'POST':
         # Parse start and end dates from the form submission
@@ -287,10 +319,12 @@ def report_order(request):
         # If it's a GET request or if no dates are provided, display an empty form
         return render(request, 'stock_management/report_item.html', {})
 
+@login_required
 def stockin(request):
     stockin = Stock_In.objects.all()
     return render(request, 'stock_management/stock_in.html',{'stockins':stockin})
 
+@login_required
 def stockout(request):
     item_var = Item.objects.all()
     supplier_var = Supplier.objects.all()
@@ -332,10 +366,12 @@ def stockout(request):
     }
     return render(request, 'stock_management/stock_out.html', context)
 
+@login_required
 def manage_stockout(request):
     stockout = Stock_Out.objects.all()
     return render(request, 'stock_management/manage_stockout.html',{'stockouts':stockout})
 
+@login_required
 def update_stockout(request, stockout_id, item_id, supplier_id):
     stockout = Stock_Out.objects.get(pk=stockout_id)
     item = Item.objects.get(pk=item_id)
@@ -380,6 +416,7 @@ def update_stockout(request, stockout_id, item_id, supplier_id):
     }
     return render(request, 'stock_management/update_stockout.html', context)
 
+@login_required
 def delete_stockout(request, stockout_id):
     stockout = Stock_Out.objects.get(pk=stockout_id)
     stockout.delete()
