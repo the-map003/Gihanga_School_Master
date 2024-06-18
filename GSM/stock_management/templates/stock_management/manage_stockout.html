@@ -1,0 +1,47 @@
+{% extends "stock_management/stock_base.html" %}
+{% load static %}
+{% block content %}
+<div class="col-lg-12 grid-margin stretch-card">
+    <div class="card">
+      <div class="card-body">
+        <h3 class="card-title">Manage Stockout</h3>
+        </p>
+        <div class="table-responsive">
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th> # </th>
+                <th> Supplier Name </th>
+                <th> Item Name </th>
+                <th> Quantity_Stockout </th>
+                <th> Unity Price </th>
+                <th> Total Amount </th>
+                <th> Date </th>
+                <th> Updated Date </th>
+                <th> Action </th>
+              </tr>
+            </thead>
+            <tbody>
+                  {% for stockout in stockouts %}
+                      <tr>
+                        <td>{{ stockout.id }}</td>
+                        <td>{{ stockout.supplier.name }}</td>
+                        <td>{{ stockout.item.name }}</td>
+                        <td>{{ stockout.quantity }}</td>
+                        <td>{{ stockout.unit }}</td>
+                        <td>{{ stockout.total }}</td>
+                        <td>{{ stockout.stocked_at }}</td>
+                        <td>{{ stockout.updated_at }}</td>
+                        <td colspan="3">
+                          <a href="{% url 'update_stockout' stockout.id stockout.item.id stockout.supplier.id %}"><button type="submit" class="btn btn-primary mr-2">Update</button></a>
+                          <a href="{% url 'delete_stockout' stockout.id %}"><button class="btn btn-danger">Delete</button></a>
+                        </td>
+                      </tr>
+                  {% endfor %}
+              </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock content %}

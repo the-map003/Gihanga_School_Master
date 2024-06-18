@@ -1,0 +1,42 @@
+{% extends "stock_management/stock_base.html" %}
+{% load static %}
+{% block content %}
+<div class="col-lg-12 grid-margin stretch-card">
+    <div class="card">
+      <div class="card-body">
+        <h3 class="card-title">Stock In</h3>
+        </p>
+        <div class="table-responsive">
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th> # </th>
+                <th> Supplier Name </th>
+                <th> Item Name </th>
+                <th> Quantity </th>
+                <th> Unity Price </th>
+                <th> Total Amount </th>
+                <th> Date </th>
+                <th> Status </th>
+              </tr>
+            </thead>
+            <tbody>
+                  {% for stockin in stockins %}
+                      <tr>
+                        <td>{{ stockin.id }}</td>
+                        <td>{{ stockin.supplier.name }}</td>
+                        <td>{{ stockin.item.name }}</td>
+                        <td>{{ stockin.quantity }}</td>
+                        <td>{{ stockin.unit }}</td>
+                        <td>{{ stockin.total }}</td>
+                        <td>{{ stockin.stocked_at }}</td>
+                        <td>{{ stockin.status }}</td>
+                      </tr>
+                  {% endfor %}
+              </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+</div>
+{% endblock content %}

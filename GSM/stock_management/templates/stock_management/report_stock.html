@@ -1,0 +1,77 @@
+{% extends "stock_management/stock_base.html" %}
+{% load static %}
+{% block content %}
+<div class="col-12 grid-margin stretch-card">
+    <div class="card">
+      <div class="card-body">
+        <button type="button" class="btn btn-primary btn-lg mr-2" onclick="showDateSelection('stockin')">Stockin Report</button>
+        <button type="button" class="btn btn-success btn-lg" onclick="showDateSelection('stockout')">Stockout Report</button>
+        <br>
+        <br>
+        <div id="dateSelection" style="display: none;">
+          <h4 class="card-title">Select Date</h4>
+          <form class="form-inline" method="post" action="{% url 'report_stock' %}">
+            {% csrf_token %}
+            <input type="date" class="form-control mb-2 mr-sm-2" id="start_date" placeholder="Start Date" name="start_date">
+            <input type="date" class="form-control mb-2 mr-sm-2" id="end_date" placeholder="End Date" name="end_date">
+            <input type="hidden" name="report_type" id="report_type">
+            <button type="submit" class="btn btn-primary mb-2">Check</button>
+          </form>
+        </div>
+      </div>
+    </div>
+</div>
+{% if stock_entries %}
+<div class="col-lg-12 grid-margin stretch-card">
+    <div class="card">
+      <div class="card-body">
+        <h3 class="card-title">{{ report_title }}</h3>
+        <div class="table-responsive">
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th> # </th>
+                <th> Supplier Name </th>
+                <th> Item </th>
+                <th> Quantity </th>
+                <th> Unit Price </th>
+                <th> Total Price </th>
+                <th> Stocked In Date </th>
+                <th> Updated Date </th>
+                <th> Status </th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for entry in stock_entries %}
+              <tr>
+                <td>{{ entry.id }}</td>
+                <td>{{ entry.supplier.name }}</td>
+                <td>{{ entry.item.name }}</td>
+                <td>{{ entry.quantity }}</td>
+                <td>{{ entry.unit }}</td>
+                <td>{{ entry.total }}</td>
+                <td>{{ entry.stocked_at }}</td>
+                <td>{{ entry.updated_at }}</td>
+                <td>{{ entry.status }}</td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endif %}
+<script>
+    function showDateSelection(reportType) {
+      var dateSelectionDiv = document.getElementById('dateSelection');
+      var reportTypeInput = document.getElementById('report_type');
+      reportTypeInput.value = reportType;
+      if (reportType === 'stockin' || reportType === 'stockout') {
+        dateSelectionDiv.style.display = 'block';
+      } else {
+        dateSelectionDiv.style.display = 'none';
+      }
+    }
+</script>
+{% endblock %}

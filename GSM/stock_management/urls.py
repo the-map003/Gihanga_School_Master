@@ -22,6 +22,14 @@ urlpatterns = [
     path('update_order/<int:purchaseorder_id>/<int:item_id>/<int:supplier_id>/', views.update_order, name="update_order"),
     path('delete_order/<int:purchaseorder_id>/',views.delete_order, name="delete_order"),
     path('report_order',views.report_order, name="report_order"),
+    path('receive_order/<int:order_id>/', views.receive_order, name="receive_order"),
+    path('stockin', views.stockin, name="stockin"),
+    path('stockout', views.stockout, name="stockout"),
+    path('manage_stockout', views.manage_stockout, name="manage_stockout"),
+    path('update_stockout/<int:stockout_id>/<int:item_id>/<int:supplier_id>/', views.update_stockout, name="update_stockout"),
+    path('delete_stockout/<int:stockout_id>/', views.delete_stockout, name='delete_stockout'),
+    path('report_stock', views.report_stock, name="report_stock"),
+    
 ]+static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

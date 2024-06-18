@@ -32,6 +32,7 @@
                 <th> Unity Price </th>
                 <th> Total Amount </th>
                 <th> Date </th>
+                <th> Status </th>
               </tr>
             </thead>
             <tbody>
@@ -44,6 +45,7 @@
                         <td>{{ purchaseorder.unit }}</td>
                         <td>{{ purchaseorder.total }}</td>
                         <td>{{ purchaseorder.ordered_at }}</td>
+                        <td>{{ purchaseorder.status }}</td>
                       </tr>
                   {% endfor %}
               </tbody>
@@ -51,5 +53,5 @@
         </div>
       </div>
     </div>
-  </div>
+</div>
 {% endblock content %}

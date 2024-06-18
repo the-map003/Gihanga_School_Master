@@ -30,8 +30,9 @@
                         <td>{{ purchaseorder.unit }}</td>
                         <td>{{ purchaseorder.total }}</td>
                         <td>{{ purchaseorder.ordered_at }}</td>
-                        <td colspan="2">
+                        <td colspan="3">
                           <a href="{% url 'update_order' purchaseorder.id purchaseorder.item.id purchaseorder.supplier.id %}"><button type="submit" class="btn btn-primary mr-2">Update</button></a>
+                          <a href="{% url 'receive_order' purchaseorder.id %}"><button class="btn btn-warning mr-2">Receive</button></a>
                           <a href="{% url 'delete_order' purchaseorder.id %}"><button class="btn btn-danger">Delete</button></a>
                         </td>
                       </tr>

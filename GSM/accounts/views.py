@@ -43,6 +43,8 @@ def redirect_users(request):
         return redirect('dos') 
     elif user.role == Users.MASTER:
         return redirect('master')
+    elif user.role == Users.LIBRARIAN:
+        return redirect('library_dashboard')
     else:
         # Handle default redirection (e.g., redirect to a generic dashboard)
         return redirect('student_dashboard')  # Replace 'generic_dashboard' with the appropriate URL name for the generic dashboard

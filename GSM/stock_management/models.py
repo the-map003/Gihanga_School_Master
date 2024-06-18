@@ -52,32 +52,34 @@ class PurchaseOrder(models.Model):
     def __str__(self) :
         return self.item.name
 
-class Stock(models.Model):
-    suppliyer=models.ForeignKey(Supplier,related_name='stock',on_delete=models.CASCADE)
+class Stock_In(models.Model):
+    supplier=models.ForeignKey(Supplier,related_name='stock',on_delete=models.CASCADE)
     item=models.ForeignKey(Item,related_name='stock',on_delete=models.CASCADE)
     quantity=models.IntegerField()
     unit=models.FloatField()
+    total=models.FloatField()
     creator=models.ForeignKey(Users,related_name='stock',on_delete=models.CASCADE)
     stocked_at=models.DateTimeField(auto_now_add=True)
     status=models.TextField(max_length=255)
     updated_at=models.DateTimeField(auto_now=True)
     class Meta:
-        ordering=['-stocked_at']
+        ordering=['stocked_at']
     def __str__(self) :
         
         return self.item.name   
      
 class Stock_Out(models.Model):
-        suppliyer=models.ForeignKey(Supplier,related_name='stockout',on_delete=models.CASCADE)
+        supplier=models.ForeignKey(Supplier,related_name='stockout',on_delete=models.CASCADE)
         item=models.ForeignKey(Item,related_name='stockout',on_delete=models.CASCADE)
         quantity=models.IntegerField()
         unit=models.FloatField()
+        total=models.FloatField()
         creator=models.ForeignKey(Users,related_name='stockout',on_delete=models.CASCADE)
         stocked_at=models.DateTimeField(auto_now_add=True)
         status=models.TextField(max_length=255)
         updated_at=models.DateTimeField(auto_now=True)
         class Meta:
-            ordering=['-stocked_at']
+            ordering=['stocked_at']
         def __str__(self) :
             
             return self.item.name   
